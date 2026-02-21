@@ -44,7 +44,7 @@ services:
       - '3000:3000'
 
     env_file:
-      - apps/data-collector/.env
+      - apps/data-collector/.env.example
 
     environment:
       - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
@@ -60,7 +60,7 @@ services:
     ports:
       - '3001:3001'
     env_file:
-      - apps/alert-processor/.env
+      - apps/alert-processor/.env.example
 
     environment:
       - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
