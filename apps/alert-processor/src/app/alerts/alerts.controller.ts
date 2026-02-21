@@ -11,12 +11,10 @@ export class AlertsController {
     @Payload() data: AirQualityAlertPayload,
     @Ctx() context: RmqContext,
   ) {
-    // 1. Extract the primary index (uaqi)
     const uaqiData = data.indexes.find((i) => i.code === 'uaqi');
 
-    this.logger.log(`[ALERT] CRITICAL AIR QUALITY DETECTED`);
-
     const logMessage = [
+      `[ALERT] CRITICAL AIR QUALITY DETECTED`,
       `City:: ${data.city.toUpperCase()} | Region ${data.regionCode.toUpperCase()}`,
       `AQI: ${uaqiData.aqi} | Category: ${uaqiData.category}`,
       `Dominant: ${uaqiData?.dominantPollutant} | Color: R:${uaqiData?.color?.red} G:${uaqiData?.color?.green}`,
