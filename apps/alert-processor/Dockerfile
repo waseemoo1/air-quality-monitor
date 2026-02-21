@@ -23,7 +23,7 @@ RUN apk add --no-cache openssl
 
 COPY --from=builder /app/dist/apps/alert-processor ./
 
-RUN npm install --omit=dev && npm install prisma
+RUN npm install --omit=dev && npm install prisma @prisma/adapter-pg pg
 
 COPY apps/alert-processor/prisma ./prisma
 
