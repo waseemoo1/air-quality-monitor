@@ -1,0 +1,34 @@
+# 1. Dependency Directories (Let the container install these from scratch!)
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# 2. Build Outputs and Caches
+dist
+tmp
+out-tsc
+.nx/cache
+
+# 3. Environment Variables (SECURITY: Never bake these into the image!)
+.env
+.env.*
+!.env.example
+
+# 4. Git History (Bloats the image size)
+.git
+.gitignore
+
+# 5. IDE and OS Files
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+
+# 6. Testing and Coverage
+coverage
+.nyc_output
+
+# 7. Prisma local files (If you ever use SQLite locally)
+*.db
+*.db-journal
