@@ -91,7 +91,7 @@ services:
       dockerfile: apps/dashboard/Dockerfile
     container_name: dashboard
     ports:
-      - '8080:80'
+      - '3002:80'
     depends_on:
       - alert-processor
       - data-collector
