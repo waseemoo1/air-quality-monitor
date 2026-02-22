@@ -7,7 +7,7 @@ RUN npm install
 
 COPY . .
 
-RUN cd apps/alert-processor && npx prisma generate
+RUN cd apps/alert-processor && DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy" npx prisma generate
 
 RUN npx nx build alert-processor
 
