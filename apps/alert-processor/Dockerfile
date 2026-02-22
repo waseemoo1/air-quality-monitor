@@ -28,6 +28,8 @@ RUN npm install --omit=dev && npm install prisma @prisma/adapter-pg pg
 COPY apps/alert-processor/prisma ./prisma
 COPY apps/alert-processor/prisma.config.ts ./prisma.config.ts
 
+RUN npx prisma generate
+
 COPY apps/alert-processor/entrypoint.sh ./entrypoint.sh
 RUN chmod +x entrypoint.sh
 
