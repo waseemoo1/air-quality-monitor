@@ -7,7 +7,7 @@ RUN npm install
 
 COPY . .
 
-RUN npx prisma generate --schema=apps/alert-processor/prisma/schema.prisma
+RUN cd apps/alert-processor && npx prisma generate
 
 RUN npx nx build alert-processor
 
@@ -23,12 +23,12 @@ RUN apk add --no-cache openssl
 
 COPY --from=builder /app/dist/apps/alert-processor ./
 
-RUN npm install --omit=dev && npm install prisma @prisma/adapter-pg pg
+RUN npm install --omit=dev && npm install @prisma/adapter-pg pg prisma
 
 COPY apps/alert-processor/prisma ./prisma
 COPY apps/alert-processor/prisma.config.ts ./prisma.config.ts
 
-RUN DATABASE_URL="postgresql://dummy:dummy@localhost/dummy" npx prisma generate
+COPY --from=builder /app/apps/alert-processor/generated ./generated
 
 COPY apps/alert-processor/entrypoint.sh ./entrypoint.sh
 RUN chmod +x entrypoint.sh
