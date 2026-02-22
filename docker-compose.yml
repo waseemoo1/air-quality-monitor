@@ -4,7 +4,7 @@ services:
 
     container_name: rabbitmq
     ports:
-      - '5672:5672'
+      # - '5672:5672'
       - '15672:15672'
     environment:
       RABBITMQ_DEFAULT_USER: guest
@@ -20,8 +20,8 @@ services:
     restart: always
     container_name: air_quality_db
     command: ['postgres', '-c', 'wal_level=logical']
-    ports:
-      - 5500:5432
+    # ports:
+    #   - 5500:5432
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres001}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres001}
@@ -84,6 +84,17 @@ services:
         condition: service_healthy
       postgres:
         condition: service_healthy
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: apps/dashboard/Dockerfile
+    container_name: dashboard
+    ports:
+      - '8080:80'
+    depends_on:
+      - alert-processor
+      - data-collector
 
 volumes:
   postgres_data:
