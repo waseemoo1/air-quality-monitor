@@ -5,7 +5,6 @@ import { AlertsService } from './alerts.service';
 
 @Controller()
 export class AlertsController {
-  // Inject the new AlertsService
   constructor(private readonly alertsService: AlertsService) {}
 
   @EventPattern('air_quality_alert')

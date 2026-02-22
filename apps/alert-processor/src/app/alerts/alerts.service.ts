@@ -13,7 +13,6 @@ export class AlertsService {
   ): Promise<void> {
     const uaqiData = data.indexes.find((i) => i.code === 'uaqi');
 
-    // 1. Log the formatted message
     const logMessage = [
       `[ALERT] CRITICAL AIR QUALITY DETECTED`,
       `City: ${data.city.toUpperCase()} | Region: ${data.regionCode.toUpperCase()}`,
